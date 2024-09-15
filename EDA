@@ -9,18 +9,32 @@ hockey_data = pd.read_csv(file_path, encoding='latin1')
 # Отображение первых строк данных
 print(hockey_data.head())
 
+import math
 
-  year country  no                 name position side  height  weight  \
-0  2001     RUS  10     tverdovsky oleg         D    L     185    84.0   
-1  2001     RUS   2   vichnevsky vitali         D    L     188    86.0   
-2  2001     RUS  26  petrochinin evgeni         D    L     182    95.0   
-3  2001     RUS  28     zhdan alexander         D    R     178    85.0   
-4  2001     RUS  32     orekhovsky oleg         D    R     175    88.0   
+# Задача 1: Данные зарплат
+salaries = [100, 80, 75, 77, 89, 33, 45, 25, 65, 17, 30, 24, 57, 55, 70, 75, 65, 84, 90, 150]
+n = len(salaries)
 
-        birth                     club        age  cohort        bmi  
-0  1976-05-18    anaheim mighty ducks   24.952772    1976  24.543462  
-1  1980-03-18    anaheim mighty ducks   21.119781    1980  24.332277  
-2  1976-02-07  severstal cherepovetal   25.229295    1976  28.680111  
-3  1971-08-28           ak bars kazan   29.675565    1971  26.827421  
-4  1977-11-03           dynamo moscow   23.490760    1977  28.734694  
+# Среднее арифметическое
+mean_salary = sum(salaries) / n
+
+# Смещенная дисперсия
+biased_variance = sum((x - mean_salary) ** 2 for x in salaries) / n
+
+# Несмещенная дисперсия
+unbiased_variance = sum((x - mean_salary) ** 2 for x in salaries) / (n - 1)
+
+# Среднее квадратичное отклонение
+std_deviation = math.sqrt(biased_variance)
+
+# Подготовка результатов
+results_task1 = {
+    'Среднее арифметическое': mean_salary,
+    'Смещенная дисперсия': biased_variance,
+    'Несмещенная дисперсия': unbiased_variance,
+    'Среднее квадратичное отклонение': std_deviation
+}
+
+results_task1
+
 
